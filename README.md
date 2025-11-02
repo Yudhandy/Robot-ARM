@@ -82,7 +82,7 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 9.  Upload the sketch to the ESP32.
 10. Open the **Serial Monitor** (set baud rate to 115200) to find the IP address assigned to the ESP32.
 11. Open that IP address in your browser to start controlling the robot. 🚀
-![Circuit Schematic](/Image/TampilanWeb.jpg)
+![Circuit Schematic](/Image/TampilanWeb.png)
 
 ---
 
