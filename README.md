@@ -1,4 +1,4 @@
- 2DoFarmgripper
+# 2DoFarmgripper
 **Robotics Practicum 2025/2026 — UGMURO**
 
 A 2-DOF (Degree of Freedom) robot arm project with record & playback functionality. This project supports two platforms: 
@@ -35,9 +35,7 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 # Pinout Reference
 
 # 1. Arduino Uno (Joystick Control & Record/Play)
-![Circuit Schematic](/Image/arduino.jpg)
-
-| Component | Arduino Pin |
+<img src="/Image/arduino.jpg" width="600"> | Component | Arduino Pin |
 | :--- | :--- |
 | Joystick X-axis | A0 |
 | Joystick Y-axis | A1 |
@@ -47,9 +45,7 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 | Servo Shoulder | D10 |
 
 # 2. ESP32 (Web Control via LittleFS)
-![Circuit Schematic](/Image/esp32.jpg)
-
-| Component | ESP32 Pin |
+<img src="/Image/esp32.jpg" width="600"> | Component | ESP32 Pin |
 | :--- | :--- |
 | Servo Base | 18 |
 | Servo Shoulder | 19 |
@@ -82,9 +78,7 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 9.  Upload the sketch to the ESP32.
 10. Open the **Serial Monitor** (set baud rate to 115200) to find the IP address assigned to the ESP32.
 11. Open that IP address in your browser to start controlling the robot. 🚀
-![Circuit Schematic](/Image/TampilanWeb.png)
-
----
+<img src="/Image/TampilanWeb.png" width="600"> ---
 
 # ⚠️ Important Notes
 
@@ -95,4 +89,3 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 # 📜 License
 
 Distributed under the MIT License. See the `LICENSE` file for more information.
-```
