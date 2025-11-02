@@ -35,7 +35,7 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 # Pinout Reference
 
 # 1. Arduino Uno (Joystick Control & Record/Play)
-![Circuit Schematic](/image/arduino.jpg)
+![Circuit Schematic](/Image/arduino.jpg)
 
 | Component | Arduino Pin |
 | :--- | :--- |
@@ -47,6 +47,7 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 | Servo Shoulder | D10 |
 
 # 2. ESP32 (Web Control via LittleFS)
+![Circuit Schematic](/Image/esp32.jpg)
 
 | Component | ESP32 Pin |
 | :--- | :--- |
@@ -81,6 +82,7 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 9.  Upload the sketch to the ESP32.
 10. Open the **Serial Monitor** (set baud rate to 115200) to find the IP address assigned to the ESP32.
 11. Open that IP address in your browser to start controlling the robot. 🚀
+![Circuit Schematic](/Image/TampilanWeb.jpg)
 
 ---
 
