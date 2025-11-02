@@ -35,7 +35,9 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 # Pinout Reference
 
 # 1. Arduino Uno (Joystick Control & Record/Play)
-<img src="/Image/arduino.jpg" width="600"> | Component | Arduino Pin |
+<img src="/Image/arduino.jpg" width="500"> 
+
+| Component | Arduino Pin |
 | :--- | :--- |
 | Joystick X-axis | A0 |
 | Joystick Y-axis | A1 |
@@ -45,7 +47,9 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 | Servo Shoulder | D10 |
 
 # 2. ESP32 (Web Control via LittleFS)
-<img src="/Image/esp32.jpg" width="600"> | Component | ESP32 Pin |
+<img src="/Image/esp32.jpg" width="500"> 
+
+| Component | ESP32 Pin |
 | :--- | :--- |
 | Servo Base | 18 |
 | Servo Shoulder | 19 |
