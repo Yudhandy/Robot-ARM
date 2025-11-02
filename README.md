@@ -35,6 +35,7 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 # Pinout Reference
 
 # 1. Arduino Uno (Joystick Control & Record/Play)
+![Circuit Schematic](/image/arduino.jpg)
 
 | Component | Arduino Pin |
 | :--- | :--- |
