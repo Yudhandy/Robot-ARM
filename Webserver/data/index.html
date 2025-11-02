@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ESP32 Robot Arm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+      h2 {
+        color: #333;
+      }
+      .slider-container {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      /* Style slider agar lebih modern */
+      input[type="range"] {
+        width: 90%;
+        margin: 10px 0;
+        -webkit-appearance: none;
+        height: 10px;
+        background: #ddd;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: 0.2s;
+        transition: opacity 0.2s;
+        border-radius: 5px;
+      }
+      input[type="range"]:hover {
+        opacity: 1;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: #007bff;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+      input[type="range"]::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        background: #007bff;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
+      .button-group {
+        margin-top: 20px;
+      }
+      /* Style tombol */
+      button {
+        margin: 5px;
+        padding: 12px 24px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      /* Tombol dengan fungsi berbeda */
+      #btn-record {
+        background-color: #28a745;
+      } /* Hijau */
+      #btn-record:hover {
+        background-color: #218838;
+      }
+      #btn-play {
+        background-color: #ffc107;
+      } /* Kuning */
+      #btn-play:hover {
+        background-color: #e0a800;
+      }
+      #btn-reset {
+        background-color: #dc3545;
+      } /* Merah */
+      #btn-reset:hover {
+        background-color: #c82333;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>ESP32 2DOF Robot Arm</h2>
+
+    <div class="slider-container">
+      <p>Base Servo (<span id="baseValue">90</span>)</p>
+      <input
+        type="range"
+        min="0"
+        max="180"
+        value="90"
+        id="baseSlider"
+        oninput="updateServo(this, 'baseValue')"
+        onchange="sendServoData()"
+      />
+
+      <p>Shoulder Servo (<span id="shoulderValue">90</span>)</p>
+      <input
+        type="range"
+        min="0"
+        max="180"
+        value="90"
+        id="shoulderSlider"
+        oninput="updateServo(this, 'shoulderValue')"
+        onchange="sendServoData()"
+      />
+    </div>
+
+    <div class="button-group">
+      <button id="btn-record" onclick="recordArm()">Record Position</button>
+      <button id="btn-play" onclick="playArm()">Play Sequence</button>
+      <button id="btn-reset" onclick="resetArm()">Reset Arm</button>
+    </div>
+
+    <script>
+      // Variabel untuk menahan update agar tidak terlalu sering
+      let servoUpdateTimeout;
+
+      function updateServo(slider, valueId) {
+        // Update nilai di UI secara real-time
+        document.getElementById(valueId).innerText = slider.value;
+
+        // Hapus timeout sebelumnya
+        clearTimeout(servoUpdateTimeout);
+
+        // Atur timeout baru. Ini akan mengirim data hanya setelah user
+        // berhenti menggerakkan slider selama 50ms (mengurangi beban server)
+        servoUpdateTimeout = setTimeout(sendServoData, 50);
+      }
+
+      function sendServoData() {
+        var base = document.getElementById("baseSlider").value;
+        var shoulder = document.getElementById("shoulderSlider").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/set?base=" + base + "&shoulder=" + shoulder, true);
+        xhr.send();
+      }
+
+      function resetArm() {
+        console.log("Sending /reset");
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/reset", true);
+
+        xhr.onload = function () {
+          if (xhr.status == 200) {
+            console.log("Reset complete.");
+            // Reset slider positions visually too
+            document.getElementById("baseSlider").value = 90;
+            document.getElementById("shoulderSlider").value = 90;
+            document.getElementById("baseValue").innerText = 90;
+            document.getElementById("shoulderValue").innerText = 90;
+          }
+        };
+
+        xhr.send();
+      }
+
+      function recordArm() {
+        console.log("Sending /record");
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/record", true);
+        xhr.onload = function () {
+          console.log("Server response: " + xhr.responseText);
+        };
+        xhr.send();
+      }
+
+      function playArm() {
+        console.log("Sending /play");
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/play", true);
+        xhr.onload = function () {
+          console.log("Server response: " + xhr.responseText);
+        };
+        xhr.send();
+      }
+
+      // Set nilai awal saat halaman dimuat
+      document.getElementById("baseValue").innerText =
+        document.getElementById("baseSlider").value;
+      document.getElementById("shoulderValue").innerText =
+        document.getElementById("shoulderSlider").value;
+    </script>
+  </body>
+</html>
