@@ -59,7 +59,7 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 
 1.  Install the [Arduino IDE](https://www.arduino.cc/en/software).
 2.  Select board: **Arduino Uno** from the *Tools* > *Board* menu.
-3.  Open the `/ControlArm/RobotCotrol.ino` sketch.
+3.  Open the [RobotCotrol.ino](/ControlArm/RobotCotrol.ino) sketch.
 4.  Connect your Arduino Uno to the computer and select the correct Port.
 5.  Upload the sketch.
 6.  Wire the components according to the Arduino Uno pinout table.
@@ -70,11 +70,11 @@ A 2-DOF (Degree of Freedom) robot arm project with record & playback functionali
 2.  Install ESP32 board support via the **Board Manager**.
 3.  Install the **ESP32 LittleFS** plugin:
     * Follow the plugin installation guide [here](https://github.com/lorol/arduino-esp32fs-plugin).
-4.  Inside the sketch folder, create a new folder named `data`.
-5.  Place your `/Webserver/data/index.html` file inside the `data` folder.
+4.  Inside the sketch folder, create a new folder named [data](/Webserver/data).
+5.  Place your [index.html](/Webserver/data/index.html) file inside the [data](/Webserver/data) folder.
 6.  Select your ESP32 board (e.g., *ESP32 Dev Module*).
-7.  Upload the filesystem: Go to **Tools** → **ESP32 Data Upload**. (This uploads the `index.html` file to LittleFS).
-8.  Open the `/Webserver/WebControl.ino` sketch.
+7.  Upload the filesystem: Go to **Tools** → **ESP32 Data Upload**. (This uploads the [index.html](/Webserver/data/index.html) file to LittleFS).
+8.  Open the [WebControl](/Webserver/WebControl.ino) sketch.
 9.  Upload the sketch to the ESP32.
 10. Open the **Serial Monitor** (set baud rate to 115200) to find the IP address assigned to the ESP32.
 11. Open that IP address in your browser to start controlling the robot. 🚀
